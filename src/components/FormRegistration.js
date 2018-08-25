@@ -95,8 +95,8 @@ class FormRegistration extends Component {
               margin="normal"
             >
               {schools.map(school => (
-                <MenuItem key={school.school_id} value={school.school_id}>
-                  {school.school_name}
+                <MenuItem key={school.id} value={school.id}>
+                  {school.name}
                 </MenuItem>
               ))}
             </TextField>

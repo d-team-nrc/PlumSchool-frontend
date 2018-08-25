@@ -1,6 +1,6 @@
 const mockData = [
-  { school_id: 'school1', school_name: 'School 1' },
-  { school_id: 'school2', school_name: 'School 2' },
+  { id: 'school1', name: 'School 1' },
+  { id: 'school2', name: 'School 2' },
 ];
 
 export const getSchools = () => (
