@@ -6,6 +6,7 @@ import StepButton from '@material-ui/core/StepButton';
 
 import FormRegistration from './FormRegistration';
 
+import { getEnrollmentReasons } from '../services/enrollment';
 import { getRelationships } from '../services/relationship';
 import { getSchools } from '../services/school';
 
@@ -13,11 +14,13 @@ class Register extends Component {
   state = {
     activeStep: 0,
     completed: false,
+    enrollmentReasons: [],
     relationships: [],
     schools: [],
   };
 
   componentDidMount() {
+    getEnrollmentReasons().then(enrollmentReasons => this.setState({ enrollmentReasons }));
     getRelationships().then(relationships => this.setState({ relationships }));
     getSchools().then(schools => this.setState({ schools }));
   }
@@ -31,7 +34,12 @@ class Register extends Component {
   };
 
   render() {
-    const { activeStep, relationships, schools } = this.state;
+    const {
+      activeStep,
+      enrollmentReasons,
+      relationships,
+      schools,
+    } = this.state;
     const steps = this.getSteps();
 
     return (
@@ -50,6 +58,7 @@ class Register extends Component {
         </Stepper>
         <Divider />
         <FormRegistration
+          enrollmentReasons={enrollmentReasons}
           relationships={relationships}
           schools={schools}
           step={activeStep}
