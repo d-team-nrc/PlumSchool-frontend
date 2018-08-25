@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "max-len": ["error", { "code": 120 }],
+    "no-confusing-arrow": 0,
+    "no-console": 2,
+    "no-nested-ternary": 0,
+    "react/jsx-filename-extension": "['error', {extensions: ['.js']}]",
+    "jsx-a11y/anchor-is-valid": "['error', {components: ['Link'], specialLink: ['to'], aspects: ['noHref', 'invalidHref', 'preferButton']}]"
+  }
+}
