@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
@@ -66,6 +65,7 @@ class FormRegistration extends Component {
               id="date_of_birth"
               label="Date of Birthday"
               type="date"
+              value={date_of_birth}
               InputLabelProps={{
                 shrink: true,
               }}
