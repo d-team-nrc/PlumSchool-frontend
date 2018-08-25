@@ -10,7 +10,8 @@ const App = () => (
   <BrowserRouter>
     <Switch>
       <AuthRoute path="/login" component={lazyLoad('Login')} />
-      <PrivateRoute path="/" component={lazyLoad('Home')} />
+      <PrivateRoute exact path="/" component={lazyLoad('Home')} />
+      <PrivateRoute path="/register" component={lazyLoad('Register')} />
     </Switch>
   </BrowserRouter>
 );
