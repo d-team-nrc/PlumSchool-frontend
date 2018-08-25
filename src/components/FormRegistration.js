@@ -11,6 +11,10 @@ class FormRegistration extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      caregiver_contact: '',
+      caregiver_name: '',
+      caregiver_relationship: '',
+      center_referral: '',
       date_of_birth: '',
       gender: 'female',
       name: '',
@@ -26,8 +30,12 @@ class FormRegistration extends Component {
   };
 
   render() {
-    const { schools, step } = this.props;
+    const { relationships, schools, step } = this.props;
     const {
+      caregiver_contact,
+      caregiver_name,
+      caregiver_relationship,
+      center_referral,
       date_of_birth,
       gender,
       name,
@@ -94,12 +102,53 @@ class FormRegistration extends Component {
             </TextField>
           </form>
         ) : null}
+
+        {step === 1 ? (
+          <form style={style}>
+            <TextField
+              id="caregiver_name"
+              label="Caregiver Name"
+              value={caregiver_name}
+              onChange={this.handleChange('caregiver_name')}
+              margin="normal"
+            />
+            <TextField
+              id="caregiver_contact"
+              label="Caregiver Contact"
+              value={caregiver_contact}
+              onChange={this.handleChange('caregiver_contact')}
+              margin="normal"
+            />
+            <TextField
+              id="caregiver_relationship"
+              select
+              label="Caregiver Relationship"
+              value={caregiver_relationship}
+              onChange={this.handleChange('caregiver_relationship')}
+              margin="normal"
+            >
+              {relationships.map(relationship => (
+                <MenuItem key={relationship.id} value={relationship.id}>
+                  {relationship.name}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              id="center_referral"
+              label="Center Referral"
+              value={center_referral}
+              onChange={this.handleChange('center_referral')}
+              margin="normal"
+            />
+          </form>
+        ) : null}
       </div>
     );
   }
 }
 
 FormRegistration.defaultProps = {
+  relationships: [],
   schools: [],
   step: 0,
 };
