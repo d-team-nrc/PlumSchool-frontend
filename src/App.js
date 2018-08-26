@@ -4,6 +4,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 import AuthRoute from './components/AuthRoute';
 import PrivateRoute from './components/PrivateRoute';
 import withAuthentication from './components/withAuthentication';
+
 import { lazyLoad } from './utils/lazy-loading';
 
 const App = () => (
@@ -11,6 +12,7 @@ const App = () => (
     <Switch>
       <AuthRoute path="/login" component={lazyLoad('Login')} />
       <PrivateRoute exact path="/" component={lazyLoad('Home')} />
+      <PrivateRoute path="/attendance" component={lazyLoad('Attendance')} />
       <PrivateRoute path="/register" component={lazyLoad('Register')} />
     </Switch>
   </BrowserRouter>
