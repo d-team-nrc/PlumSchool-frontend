@@ -27,10 +27,10 @@ class FormRegistration extends Component {
     this.state = {
       caregiver_contact: '',
       caregiver_name: '',
+      caregiver_referral: '',
       caregiver_relationship: '',
-      center_referral: '',
       date_of_birth: '',
-      enrollment_reasons: '',
+      enrollment_reason_id: '',
       fmr_school_attended: false,
       gender: 'female',
       has_been_referred: false,
@@ -43,7 +43,7 @@ class FormRegistration extends Component {
       name: '',
       national_id: '',
       previously_enrolled: false,
-      previous_school: '',
+      previous_school_id: '',
       school_id: '',
     };
   }
@@ -65,10 +65,10 @@ class FormRegistration extends Component {
     const {
       caregiver_contact,
       caregiver_name,
+      caregiver_referral,
       caregiver_relationship,
-      center_referral,
       date_of_birth,
-      enrollment_reasons,
+      enrollment_reason_id,
       fmr_school_attended,
       gender,
       has_been_referred,
@@ -81,7 +81,7 @@ class FormRegistration extends Component {
       name,
       national_id,
       previously_enrolled,
-      previous_school,
+      previous_school_id,
       school_id,
     } = this.state;
 
@@ -90,6 +90,7 @@ class FormRegistration extends Component {
         {step === 0 ? (
           <form style={style}>
             <TextField
+              required
               id="name"
               label="Name"
               value={name}
@@ -97,6 +98,7 @@ class FormRegistration extends Component {
               margin="normal"
             />
             <TextField
+              required
               id="gender"
               select
               label="Gender"
@@ -113,15 +115,17 @@ class FormRegistration extends Component {
             </TextField>
             <TextField
               id="date_of_birth"
-              label="Date of Birthday"
+              label="Date of Birth"
               type="date"
               value={date_of_birth}
               InputLabelProps={{
                 shrink: true,
               }}
+              onChange={this.handleChange('date_of_birth')}
               margin="normal"
             />
             <TextField
+              required
               id="national_id"
               label="National ID"
               value={national_id}
@@ -129,6 +133,7 @@ class FormRegistration extends Component {
               margin="normal"
             />
             <TextField
+              required
               id="school_id"
               select
               label="School"
@@ -148,6 +153,7 @@ class FormRegistration extends Component {
         {step === 1 ? (
           <form style={style}>
             <TextField
+              required
               id="caregiver_name"
               label="Caregiver Name"
               value={caregiver_name}
@@ -155,6 +161,7 @@ class FormRegistration extends Component {
               margin="normal"
             />
             <TextField
+              required
               id="caregiver_contact"
               label="Caregiver Contact"
               value={caregiver_contact}
@@ -176,11 +183,11 @@ class FormRegistration extends Component {
               ))}
             </TextField>
             <TextField
-              id="center_referral"
+              id="caregiver_referral"
               label="Center Referral"
               helperText="How did you hear about the center?"
-              value={center_referral}
-              onChange={this.handleChange('center_referral')}
+              value={caregiver_referral}
+              onChange={this.handleChange('caregiver_referral')}
               margin="normal"
             />
           </form>
@@ -235,11 +242,12 @@ class FormRegistration extends Component {
               ))}
             </TextField>
             <TextField
-              id="enrollment_reasons"
+              required
+              id="enrollment_reason_id"
               select
               label="Enrollment Reason"
-              value={enrollment_reasons}
-              onChange={this.handleChange('enrollment_reasons')}
+              value={enrollment_reason_id}
+              onChange={this.handleChange('enrollment_reason_id')}
               margin="normal"
             >
               {enrollmentReasons.map(reason => (
@@ -249,11 +257,11 @@ class FormRegistration extends Component {
               ))}
             </TextField>
             <TextField
-              id="previous_school"
+              id="previous_school_id"
               select
               label="Previous school"
-              value={previous_school}
-              onChange={this.handleChange('previous_school')}
+              value={previous_school_id}
+              onChange={this.handleChange('previous_school_id')}
               margin="normal"
             >
               {schools.map(school => (
