@@ -1,11 +1,5 @@
-const mockData = [
-  { id: 'anna', name: 'Anna' },
-  { id: 'ania', name: 'Ania' },
-  { id: 'henrick', name: 'Henrick' },
-];
+import { apiUrl } from '../config';
 
 export const getStudents = () => (
-  new Promise((resolve, reject) => {
-    resolve(mockData);
-  })
+  fetch(`${apiUrl}/students`).then(res => res.json())
 );
