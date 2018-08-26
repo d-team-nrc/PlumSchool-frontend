@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -8,6 +10,14 @@ const style = {
   display: 'flex',
   flexDirection: 'column',
 }
+
+const btnGroup = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  margin: '32px',
+};
 
 const grades = Array.from(new Array(8), (val, index) => index + 1);
 
@@ -43,6 +53,12 @@ class FormRegistration extends Component {
       [name]: event.target.value,
     });
   };
+
+  cancelChanges = () => {
+    if (window.confirm('Are you sure? The student registration is not saved yet.')) {
+      this.props.history.push('/');
+    }
+  }
 
   render() {
     const { enrollmentReasons, relationships, schools, step } = this.props;
@@ -248,6 +264,26 @@ class FormRegistration extends Component {
             </TextField>
           </form>
         ) : null}
+
+        <div style={btnGroup}>
+          <Button
+            size="large"
+            variant="contained"
+            color="primary"
+            onClick={() => this.props.onSubmit(this.state)}
+          >
+            Save
+          </Button>
+          <Button
+            size="large"
+            variant="contained"
+            color="secondary"
+            onClick={this.cancelChanges}
+            style={{ marginLeft: '16px' }}
+          >
+            Cancel
+          </Button>
+        </div>
       </div>
     );
   }
@@ -255,9 +291,10 @@ class FormRegistration extends Component {
 
 FormRegistration.defaultProps = {
   enrollmentReasons: [],
+  onSubmit: () => {},
   relationships: [],
   schools: [],
   step: 0,
 };
 
-export default FormRegistration;
+export default withRouter(FormRegistration);
