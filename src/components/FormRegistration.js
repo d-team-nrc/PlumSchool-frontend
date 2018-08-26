@@ -9,6 +9,8 @@ const style = {
   flexDirection: 'column',
 }
 
+const grades = Array.from(new Array(8), (val, index) => index + 1);
+
 class FormRegistration extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +29,7 @@ class FormRegistration extends Component {
       has_injury: false,
       has_passed_grade_exam: false,
       health_consent: false,
+      last_grade_completed: 1,
       name: '',
       national_id: '',
       previously_enrolled: false,
@@ -58,6 +61,7 @@ class FormRegistration extends Component {
       has_injury,
       has_passed_grade_exam,
       health_consent,
+      last_grade_completed,
       name,
       national_id,
       previously_enrolled,
@@ -200,6 +204,20 @@ class FormRegistration extends Component {
               control={<Checkbox checked={has_been_referred} value="has_been_referred" />}
               label="Has been referred?"
             />
+            <TextField
+              id="last_grade_completed"
+              select
+              label="Last Grade Completed"
+              value={last_grade_completed}
+              onChange={this.handleChange('last_grade_completed')}
+              margin="normal"
+            >
+              {grades.map(grade => (
+                <MenuItem key={`grade-${grade}`} value={grade}>
+                  {grade}
+                </MenuItem>
+              ))}
+            </TextField>
             <TextField
               id="enrollment_reasons"
               select
