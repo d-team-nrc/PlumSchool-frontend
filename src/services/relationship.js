@@ -1,10 +1,5 @@
-const mockData = [
-  { id: 'mother', name: 'Mother' },
-  { id: 'father', name: 'Father' },
-];
+import { apiUrl } from '../config';
 
 export const getRelationships = () => (
-  new Promise((resolve, reject) => {
-    resolve(mockData);
-  })
+  fetch(`${apiUrl}/caregiver_relationships`).then(res => res.json())
 );
